@@ -30,6 +30,7 @@ namespace BattleshipsGame
 
         public int rowCoord,rowCoord2;
         public int colCoord,colCoord2;
+
         
         public void displayBoard()
         {
@@ -47,61 +48,50 @@ namespace BattleshipsGame
 
         public void placement() {
             string place = Console.ReadLine().ToString();
-            if (place.Length == 2)
-            {
+            place=place.ToLower();
                 try
                 {
                     rowCoord = Convert.ToInt32(place.Substring(0, 1));
-                }
-                catch (Exception e) { Console.WriteLine(e.Message); }
-            }
-            if (place.Length==5)
-            {
-                try
-                {
-                    rowCoord = Convert.ToInt32(place.Substring(0, 1));
-                    rowCoord2 = Convert.ToInt32(place.Substring(3, 1));
-                }
-                catch (Exception e) { Console.WriteLine(e.Message); }
-            }
-            
+                    //rowCoord = Convert.ToInt32(place[0]);
+                    colCoord = (((int)(place[1]) - 97) * 3)+1;
 
+                    if (place.Length == 5) {
+                        rowCoord2 = Convert.ToInt32(place.Substring(3, 1));
+                        colCoord2= (((int)(place[4]) - 97) * 3)+1;
+                }
+                }
+                catch (Exception e) { Console.WriteLine(e.Message); }
             
+            /*
             switch (place.Substring(1, 1))
             {
-                case "A":
                 case "a":
                     colCoord = 1;
                     break;
-                case "B":
                 case "b":
                     colCoord = 2;
                     break;
-                case "C":
                 case "c":
                     colCoord = 3;
                     break;
             }
-             { }
+            
             if (place.Length==5)
             {
                 switch (place.Substring(place.Length-1, 1))
                 {
-                    case "A":
                     case "a":
                         colCoord2 = 1;
                         break;
-                    case "B":
                     case "b":
                         colCoord2 = 2;
                         break;
-                    case "C":
                     case "c":
                         colCoord2 = 3;
                         break;
                 }
-            }
-            
+            }*/
+
         }
 
         public void boardUpdate() {
